@@ -63,6 +63,18 @@ HTML file. Open that in your browser to get started.
 If you want to manually upload the results to a webserver, simply copy
 everything in the `build` directory.
 
+## Use
+
+Tap buttons to play sounds. If it's a looped sound, it'll keep playing
+until you tap the button again.
+
+If you touch/click down and then drag up or down, you can either speed the
+sound up or slow it down.
+
+If you touch/click down and then drag left or right, you should be able to
+pan the sound in stereo space. (The code's in there, but I haven't yet
+observed it working. Sorry!)
+
 ## Deployment
 
 Once build files have been rendered and checked into your local copy,
@@ -99,6 +111,8 @@ Similarly, if you have a production instance:
 * Write tests
 * Support more effects
   * Maybe use something more flexible than Howler for playback?
+  * Actually get stereo panning working
+  * I'd love a nice distortion effect tbh
 * Use something friendlier than JS objects for config
   * YAML?
 * Nicer UI to indicate drag area
