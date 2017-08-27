@@ -29,6 +29,11 @@ i;
 
 // Handles UI control.
 const UiControl = {
+  // Determine if touch events can be used.
+  canTouch: function(): boolean {
+    return 'ontouchstart' in document.documentElement;
+  },
+
   // Get a button for given soundSrc.
   button: function(soundSrc: string): ?HTMLElement {
     return document.querySelector('.button[data-src="' + soundSrc + '"]');
@@ -46,7 +51,20 @@ const UiControl = {
 
   // Add mousedown button event.
   initButtonEvent: function(button: HTMLElement): void {
-    button.addEventListener('mousedown', buttonDown, false);
+    let eventType = (
+      UiControl.canTouch() ?
+      'touchstart' :
+      'mousedown'
+    );
+    button.addEventListener(eventType, buttonDown, false);
+  },
+
+  // Get the position of an event on the page.
+  getEventPos: function(e: Event): object {
+    return {
+      x: e.pageX,
+      y: e.pageY
+    };
   },
 
   // Register which button has been clicked.
@@ -57,10 +75,7 @@ const UiControl = {
     classManip.addClass(e.target, 'button--down');
     buttonsDown[soundSrc] = {
       touch: 0,
-      pos: {
-        x: e.clientX,
-        y: e.clientY
-      }
+      pos: UiControl.getEventPos(e)
     };
   },
 
@@ -90,8 +105,9 @@ const UiControl = {
     classManip.removeClass(elem, 'button--down');
 
     // Calculate the drag used to handle live performance.
-    var xDrag = e.clientX - buttonsDown[soundSrc].pos.x;
-    var yDrag = e.clientY - buttonsDown[soundSrc].pos.y;
+    let pos = UiControl.getEventPos(e),
+    xDrag = pos.x - buttonsDown[soundSrc].pos.x,
+    yDrag = pos.y - buttonsDown[soundSrc].pos.y;
 
     // Reset buttonsDown state.
     delete buttonsDown[soundSrc];
@@ -219,7 +235,7 @@ const buttonUp = function(e: Event): void {
   else {
     // Determine performance behaviour.
     let playConfig = {};
-    if (Math.abs(performance.yDrag) > 100) {
+    if (Math.abs(performance.yDrag) > 50) {
       playConfig.rate = (
         performance.yDrag > 0 ?
         0.5 :
@@ -232,7 +248,7 @@ const buttonUp = function(e: Event): void {
         playConfig.rate = 4;
       }
     }
-    if (Math.abs(performance.xDrag) > 100) {
+    if (Math.abs(performance.xDrag) > 50) {
       playConfig.pan = (
         performance.xDrag > 0 ?
         1 :
@@ -260,7 +276,12 @@ let onReady = function(e: Event): void {
     SoundControl.loadConfig(soundSrc, button.getAttribute('data-config'));
     UiControl.initButtonEvent(button);
   }
-  document.addEventListener('mouseup', buttonUp, false);
+  let eventType = (
+    UiControl.canTouch() ?
+    'touchend' :
+    'mouseup'
+  );
+  document.addEventListener(eventType, buttonUp, false);
 };
 
 window.addEventListener('DOMContentLoaded', onReady);
