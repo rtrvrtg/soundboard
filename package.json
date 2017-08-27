@@ -1,0 +1,33 @@
+{
+  "name": "soundboard",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geoffrey Roberts <g.roberts@blackicemedia.com>",
+  "license": "ISC",
+  "dependencies": {
+    "howler": "^2.0.4",
+    "object-assign": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-debug": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-shell": "^0.6.3",
+    "gulp-twig": "^0.7.0",
+    "lame": "^1.2.4",
+    "shipit-cli": "^3.0.0",
+    "shipit-deploy": "^2.5.1",
+    "stream-buffers": "^3.0.1",
+    "stream-transform": "^0.1.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

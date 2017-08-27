@@ -1,0 +1,55 @@
+// @file
+// List of all projects.
+
+var lame = require('lame');
+
+var projects = {
+  project1: {
+    audioConfig: {
+      channels: 2,
+      bitDepth: 16,
+      sampleRate: 44100,
+      bitRate: 32,
+      outSampleRate: 22050,
+      mode: lame.MONO
+    },
+    sounds: {
+      alpaca: {
+        source: 'alpaca.wav',
+        label: 'Alpaca my bags'
+      },
+      '1234': {
+        source: '1234.wav',
+        label: '1234',
+        config: {
+          rate: 0.8421
+        }
+      },
+      '18374_siren_loop': {
+        source: '18374_siren_loop.wav',
+        label: 'Siren Loop',
+        config: {
+          loop: true
+        }
+      }
+    }
+  },
+  project2: {
+    audioConfig: {
+      channels: 2,
+      bitDepth: 16,
+      sampleRate: 44100,
+      bitRate: 32,
+      outSampleRate: 22050,
+      mode: lame.MONO
+    },
+    sounds: {
+      x: {
+        source: 'x.wav',
+        label: 'Gonna give it to ya'
+      }
+    }
+  }
+};
+
+module.exports = projects;

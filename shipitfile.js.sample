@@ -1,0 +1,37 @@
+// @file
+// Shipit file.
+
+module.exports = function (shipit) {
+  require('shipit-deploy')(shipit);
+
+  shipit.initConfig({
+    default: {
+      workspace: '/tmp/soundboard',
+      deployTo: '/tmp/deploy_to',
+      repositoryUrl: 'https://github.com/rtrvrtg/soundboard.git',
+      ignores: ['.git', 'node_modules'],
+      keepReleases: 2,
+      deleteOnRollback: false,
+      key: '/path/to/key',
+      shallowClone: true
+    },
+    staging: {
+      key: '/path/to/your/staging/key',
+      servers: 'you@server.somewhere.in.world',
+      deployTo: '/path/to/staging'
+    },
+    production: {
+      key: '/path/to/your/staging/key',
+      servers: 'you@server.somewhere.in.world',
+      deployTo: '/path/to/production'
+    }
+  });
+ 
+  shipit.task('pwd', function () {
+    return shipit.remote('pwd');
+  });
+
+  shipit.task('whoami', function () {
+    return shipit.remote('whoami');
+  });
+};

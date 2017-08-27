@@ -1,0 +1,6 @@
+// @file
+// Command line tool paths.
+
+module.exports = {
+  lame: 'lame'
+};

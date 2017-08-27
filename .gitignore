@@ -1,0 +1,9 @@
+node_modules/*
+build/*
+!build/.keep
+config/*
+!config/cmd.js.sample
+!config/projects.js.sample
+shipitfile.js
+src/samples/*
+!src/samples/.keep
